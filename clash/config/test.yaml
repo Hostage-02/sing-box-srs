@@ -159,13 +159,13 @@ rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
   qcy: &qcy {type: http, interval: 86400, behavior: domain, format: text}
-  list: &pt {type: http, interval: 86400, behavior: domain, format: text}
+  list: &list {type: http, interval: 86400, behavior: domain, format: text}
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
 rule-providers: 
   private_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
   proxylite: {!!merge <<: *class, url: "https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/master/ProxyLite.list"}
   Proxy-A_domain: {!!merge <<: *list, url: "https://raw.githubusercontent.com/Hostage-02/sing-box-geosite/refs/heads/main/Proxy-A.list"}
-  pt_domain: {!!merge <<: *list, url: "https://github.com/Hostage-02/sing-box-srs/raw/refs/heads/main/clash/geosite/pt.mrs"}
+  pt_domain: {!!merge <<: *domain, url: "https://github.com/Hostage-02/sing-box-srs/raw/refs/heads/main/clash/geosite/pt.mrs"}
   fcm_domain: {!!merge <<: *domain, url: "https://github.com/Hostage-02/sing-box-srs/raw/refs/heads/main/clash/geosite/fcm-site.mrs"}
   ai: {!!merge <<: *class, url: "https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/master/AI.list"}
   github_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
@@ -173,7 +173,7 @@ rule-providers:
   telegram_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
   netflix_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
   paypal_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
-  google_domain: {!!merge <<: *pt, url: "https://raw.githubusercontent.com/Hostage-02/sing-box-geosite/refs/heads/main/google.list"}
+  google_domain: {!!merge <<: *list, url: "https://raw.githubusercontent.com/Hostage-02/sing-box-geosite/refs/heads/main/google.list"}
   onedrive_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
   microsoft_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
   apple_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs"}
