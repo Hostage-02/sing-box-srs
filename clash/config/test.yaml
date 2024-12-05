@@ -110,6 +110,7 @@ proxies:
  
 # 锚点
 pr: &pr {type: select, proxies: [🚀 节点选择, ♻️ 自动选择, 🌐 全部节点, 🟢 直连]}
+zj: &zj {type: select, proxies: [♻️ 自动选择]}
 # 策略组
 proxy-groups:
   - {name: 🚀 节点选择, type: select, proxies: [♻️ 自动选择, 🌐 全部节点, 🟢 直连]}
@@ -127,7 +128,7 @@ proxy-groups:
   - {name: 💶 PayPal,!!merge <<: *pr}
   - {name: 🍎 Apple, type: select, proxies: [🟢 直连, 🚀 节点选择]}
   - {name: 🎯 全球直连, type: select, proxies: [🟢 直连, 🚀 节点选择]}
-  - {name: 🐟 漏网之鱼, type: select, proxies: [♻️ 自动选择]}
+  - {name: 🐟 漏网之鱼,!!merge <<: *zj}
   - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
