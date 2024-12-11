@@ -94,10 +94,8 @@ dns:
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
   nameserver:
-    - tls://1.1.1.1
-    - tls://8.8.8.8
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
+    - 1.1.1.1
+    - 8.8.8.8
   fallback:
     - tls://1.1.1.1:853
     - tls://8.8.8.8:853
@@ -110,12 +108,7 @@ dns:
     "rule-set:private_domain,cn_domain,pt_domain,fcm_domain":
     - 223.5.5.5
     - 119.29.29.29
-    geosite:cn:
-      - 223.5.5.5
-      - 119.29.29.29
     "rule-set:geolocation-!cn":
-    - tls://1.1.1.1
-    - tls://8.8.8.8
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
  
