@@ -86,10 +86,8 @@ dns:
     - geosite:cn
     - rule-set:fcm_domain
   default-nameserver:
-    - tls://1.1.1.1
-    - tls://8.8.8.8
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
+    - 223.5.5.5
+    - 223.6.6.6
   proxy-server-nameserver:
     - tls://1.1.1.1
     - tls://8.8.8.8
