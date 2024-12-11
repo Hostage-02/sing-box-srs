@@ -89,21 +89,11 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   proxy-server-nameserver:
-    - tls://1.1.1.1
-    - tls://8.8.8.8
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
+    - 1.1.1.1
+    - 8.8.8.8
   nameserver:
     - 1.1.1.1
     - 8.8.8.8
-  fallback:
-    - tls://1.1.1.1:853
-    - tls://8.8.8.8:853
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
   nameserver-policy:
     "rule-set:private_domain,cn_domain,pt_domain,fcm_domain":
     - 223.5.5.5
