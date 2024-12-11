@@ -112,9 +112,8 @@ proxies:
 pr: &pr {type: select, proxies: [🚀 节点选择]}
 # 策略组
 proxy-groups:
-  - {name: 🚀 节点选择, type: select, proxies: [🌐 全部节点]}
+  - {name: 🚀 节点选择, type: select, proxies: []}
   - {name: 🐟 漏网之鱼,!!merge <<: *pr}
-  - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
   - RULE-SET,private_domain,🟢 直连
   - RULE-SET,Proxy-A_domain,🚀 节点选择
