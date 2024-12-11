@@ -86,21 +86,19 @@ dns:
     - geosite:cn
     - rule-set:fcm_domain
   default-nameserver:
-    - tls://1.12.12.12
-    - 223.5.5.5
-  proxy-server-nameserver:
     - tls://1.1.1.1
     - tls://8.8.8.8
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
+  proxy-server-nameserver:
   nameserver:
     - tls://1.1.1.1
     - tls://8.8.8.8
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
   fallback:
-    - 223.5.5.5
-    - 119.29.29.29
+    - tls://1.1.1.1:853
+    - tls://8.8.8.8:853
   fallback-filter:
     geoip: true
     geoip-code: CN
@@ -156,7 +154,7 @@ rules:
   - RULE-SET,netflix_ip,🚀 节点选择,no-resolve
   - RULE-SET,telegram_ip,🚀 节点选择,no-resolve
   - RULE-SET,adblock,REJECT  
-  - RULE-SET,cn_ip,🟢 直连
+  - RULE-SET,cn_ip,🟢 直连,no-resolve
   - MATCH,🐟 漏网之鱼
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
