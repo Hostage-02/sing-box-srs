@@ -91,6 +91,10 @@ dns:
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
   proxy-server-nameserver:
+    - tls://1.1.1.1
+    - tls://8.8.8.8
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
   nameserver:
     - tls://1.1.1.1
     - tls://8.8.8.8
@@ -141,8 +145,8 @@ rules:
   - RULE-SET,google_domain,🚀 节点选择
   - RULE-SET,github_domain,🚀 节点选择
   - RULE-SET,youtube_domain,🚀 节点选择
-  - RULE-SET,onedrive_domain,🎯 全球直连
-  - RULE-SET,microsoft_domain,🎯 全球直连
+  - RULE-SET,onedrive_domain,🟢 直连
+  - RULE-SET,microsoft_domain,🟢 直连
   - RULE-SET,tiktok_domain,🚀 节点选择
   - RULE-SET,speedtest_domain,🚀 节点选择
   - RULE-SET,telegram_domain,🚀 节点选择
