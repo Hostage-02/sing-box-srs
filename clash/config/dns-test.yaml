@@ -89,15 +89,17 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   proxy-server-nameserver:
-    - 1.1.1.1
-    - 8.8.8.8
+    - https://1.12.12.12/dns-query
+    - https://223.5.5.5/dns-query
   nameserver:
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
     - 1.1.1.1
     - 8.8.8.8
   nameserver-policy:
     "rule-set:private_domain,cn_domain,pt_domain,fcm_domain":
-    - 223.5.5.5
-    - 119.29.29.29
+    - https://1.12.12.12/dns-query
+    - https://223.5.5.5/dns-query
     "rule-set:geolocation-!cn":
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
