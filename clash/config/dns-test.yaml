@@ -141,6 +141,7 @@ rules:
   - RULE-SET,telegram_ip,🚀 节点选择,no-resolve
   - RULE-SET,adblock,REJECT  
   - RULE-SET,cn_ip,🟢 直连
+  - RULE-SET,giff,🚀 节点选择
   - MATCH,🐟 漏网之鱼
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
@@ -170,6 +171,7 @@ rule-providers:
   gfw_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
   geolocation-!cn: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  giff: {!!merge <<: *class, url: "https://raw.githubusercontent.com/Hostage-02/sing-box-srs/refs/heads/main/clash/yaml/giff.yaml"}
   
   cn_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
   google_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
