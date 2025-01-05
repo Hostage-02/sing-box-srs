@@ -92,8 +92,8 @@ dns:
     - 119.29.29.29
     - 223.5.5.5
   nameserver:
-    - 8.8.8.8
-    - 1.1.1.1
+    - https://dns.google/dns-query
+    - https://dns.cloudflare.com/dns-query
   nameserver-policy:
     "rule-set:private_domain,cn_domain,pt_domain,fcm_domain":
     - https://doh.pub/dns-query
