@@ -86,21 +86,22 @@ dns:
     - geosite:cn
     - rule-set:fcm_domain
   default-nameserver:
-    - 8.8.8.8
-    - https://1.1.1.1/dns-query
-  proxy-server-nameserver:
-    - 119.29.29.29
+  default-nameserver:
     - 223.5.5.5
+    - 119.29.29.29
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
   nameserver:
-    - 8.8.8.8
-    - https://1.1.1.1/dns-query
+    - 223.5.5.5
+    - 119.29.29.29
   nameserver-policy:
     "rule-set:private_domain,cn_domain,pt_domain,fcm_domain":
-    - https://doh.pub/dns-query
-    - https://223.5.5.5/resolve
+    - 223.5.5.5
+    - 119.29.29.29
     "rule-set:geolocation-!cn":
-    - 8.8.8.8
-    - https://1.1.1.1/dns-query
+      - "https://dns.cloudflare.com/dns-query"
+      - "https://dns.google/dns-query"
  
    
 proxies:
