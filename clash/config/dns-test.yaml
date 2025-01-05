@@ -89,20 +89,18 @@ dns:
     - 119.29.29.29
     - 223.5.5.5
   proxy-server-nameserver:
-    - https://119.29.29.29/dns-query
-    - https://223.5.5.5/dns-query
+    - https://doh.pub/dns-query
+    - https://223.5.5.5/resolve
   nameserver:
-    - https://1.1.1.1/dns-query
-    - https://8.8.8.8/dns-query
-    - 1.1.1.1
     - 8.8.8.8
+    - 208.67.222.222
   nameserver-policy:
     "rule-set:private_domain,cn_domain,pt_domain,fcm_domain":
-    - https://119.29.29.29/dns-query
-    - https://223.5.5.5/dns-query
+    - https://doh.pub/dns-query
+    - https://223.5.5.5/resolve
     "rule-set:geolocation-!cn":
-    - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
+    - https://doh.opendns.com/dns-query
  
    
 proxies:
