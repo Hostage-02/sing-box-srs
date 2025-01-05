@@ -87,9 +87,6 @@ dns:
     - rule-set:fcm_domain
   default-nameserver:
     - https://223.5.5.5/dns-query
-  proxy-server-nameserver:
-    - https://1.12.12.12/dns-query
-    - https://223.5.5.5/dns-query
   nameserver:
     - https://223.5.5.5/dns-query
     - https://doh.pub/dns-query
@@ -100,7 +97,9 @@ dns:
     "rule-set:geolocation-!cn":
     - https://9.9.9.9/dns-query
     - https://doh.apad.pro/dns-query
- 
+  fallback:
+    - https://9.9.9.9/dns-query
+    - https://doh.apad.pro/dns-query
    
 proxies:
 - name: "🟢 直连"
