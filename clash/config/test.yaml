@@ -75,7 +75,7 @@ dns:
   respect-rules: true
   # 模式切换 redir-host / fake-ip
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.1/8
+  fake-ip-range: 198.18.0.1/16
   # 模式切换 whitelist/blacklist 
   # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
   fake-ip-filter-mode: blacklist
@@ -86,21 +86,23 @@ dns:
     - geosite:cn
     - rule-set:fcm_domain
   default-nameserver:
-    - 223.5.5.5
     - 119.29.29.29
+    - 223.5.5.5
   proxy-server-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
+    - https://119.29.29.29/dns-query
+    - https://223.5.5.5/dns-query
   nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+    - 1.1.1.1
+    - 8.8.8.8
   nameserver-policy:
     "rule-set:private_domain,cn_domain,pt_domain,fcm_domain":
-    - 223.5.5.5
-    - 119.29.29.29
+    - https://119.29.29.29/dns-query
+    - https://223.5.5.5/dns-query
     "rule-set:geolocation-!cn":
-      - "https://dns.cloudflare.com/dns-query"
-      - "https://dns.google/dns-query"
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
  
    
 proxies:
@@ -109,53 +111,38 @@ proxies:
   udp: true
  
 # 锚点
-pr: &pr {type: select, proxies: [🚀 节点选择, ♻️ 自动选择, 🌐 全部节点, 🟢 直连]}
-zj: &zj {type: select, proxies: [♻️ 自动选择]}
+pr: &pr {type: select, proxies: [🚀 节点选择]}
 # 策略组
 proxy-groups:
-  - {name: 🚀 节点选择, type: select, proxies: [♻️ 自动选择, 🌐 全部节点, 🟢 直连]}
-  - {name: 📹 YouTube,!!merge <<: *pr}
-  - {name: 🍀 Proxy-A_domain,!!merge <<: *pr}
-  - {name: 🤖 ChatGPT,!!merge <<: *pr}
-  - {name: 🍀 Google,!!merge <<: *pr}
-  - {name: 👨🏿‍💻 GitHub,!!merge <<: *pr}
-  - {name: 🐬 OneDrive,!!merge <<: *pr}
-  - {name: 🪟 Microsoft,!!merge <<: *pr}
-  - {name: 🎵 TikTok,!!merge <<: *pr}
-  - {name: 📲 Telegram,!!merge <<: *pr}
-  - {name: 🎥 NETFLIX,!!merge <<: *pr}
-  - {name: ✈️ Speedtest,!!merge <<: *pr}
-  - {name: 💶 PayPal,!!merge <<: *pr}
-  - {name: 🍎 Apple, type: select, proxies: [🟢 直连, 🚀 节点选择]}
-  - {name: 🎯 全球直连, type: select, proxies: [🟢 直连, 🚀 节点选择]}
-  - {name: 🐟 漏网之鱼,!!merge <<: *zj}
-  - {name: ♻️ 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$"}
-  - {name: 🌐 全部节点, type: select, include-all: true}
+  - {name: 🚀 节点选择, type: select, proxies: []}
+  - {name: 🐟 漏网之鱼,!!merge <<: *pr}
 rules:
   - RULE-SET,private_domain,🟢 直连
-  - RULE-SET,Proxy-A_domain,♻️ 自动选择
+  - RULE-SET,Proxy-A_domain,🚀 节点选择
   - RULE-SET,pt_domain,🟢 直连
   - RULE-SET,fcm_domain,🟢 直连
-  - RULE-SET,apple_domain,🍎 Apple
+  - RULE-SET,apple_domain,🟢 直连
   - RULE-SET,proxylite,🚀 节点选择
-  - RULE-SET,ai,🤖 ChatGPT
-  - RULE-SET,google_domain,♻️ 自动选择
-  - RULE-SET,github_domain,👨🏿‍💻 GitHub
-  - RULE-SET,youtube_domain,📹 YouTube
-  - RULE-SET,onedrive_domain,🐬 OneDrive
-  - RULE-SET,microsoft_domain,🪟 Microsoft
-  - RULE-SET,tiktok_domain,🎵 TikTok
-  - RULE-SET,speedtest_domain,✈️ Speedtest
-  - RULE-SET,telegram_domain,📲 Telegram
-  - RULE-SET,netflix_domain,🎥 NETFLIX
-  - RULE-SET,paypal_domain,💶 PayPal
+  - RULE-SET,ai,🚀 节点选择
+  - RULE-SET,google_domain,🚀 节点选择
+  - RULE-SET,github_domain,🚀 节点选择
+  - RULE-SET,youtube_domain,🚀 节点选择
+  - RULE-SET,onedrive_domain,🟢 直连
+  - RULE-SET,microsoft_domain,🟢 直连
+  - RULE-SET,tiktok_domain,🚀 节点选择
+  - RULE-SET,speedtest_domain,🚀 节点选择
+  - RULE-SET,telegram_domain,🚀 节点选择
+  - RULE-SET,netflix_domain,🚀 节点选择
+  - RULE-SET,paypal_domain,🚀 节点选择
   - RULE-SET,geolocation-!cn,🚀 节点选择
-  - RULE-SET,cn_domain,🎯 全球直连
-  - RULE-SET,google_ip,🍀 Google,no-resolve
-  - RULE-SET,netflix_ip,🎥 NETFLIX,no-resolve
-  - RULE-SET,telegram_ip,📲 Telegram,no-resolve
+  - RULE-SET,cn_domain,🟢 直连
+  - RULE-SET,google_ip,🚀 节点选择,no-resolve
+  - RULE-SET,netflix_ip,🚀 节点选择,no-resolve
+  - RULE-SET,telegram_ip,🚀 节点选择,no-resolve
   - RULE-SET,adblock,REJECT  
-  - RULE-SET,cn_ip,🎯 全球直连
+  - RULE-SET,cn_ip,🟢 直连
+  - RULE-SET,giff,🚀 节点选择
+  - RULE-SET,proxy_ziyong,🚀 节点选择
   - MATCH,🐟 漏网之鱼
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
@@ -185,6 +172,8 @@ rule-providers:
   gfw_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
   geolocation-!cn: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: {!!merge <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  giff: {!!merge <<: *class, url: "https://raw.githubusercontent.com/Hostage-02/sing-box-srs/refs/heads/main/clash/yaml/giff.yaml"}
+  proxy_ziyong: {!!merge <<: *class, url: "https://raw.githubusercontent.com/Hostage-02/sing-box-srs/refs/heads/main/clash/yaml/Proxy.yaml"}
   
   cn_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
   google_ip: {!!merge <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
