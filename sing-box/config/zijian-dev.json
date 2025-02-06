@@ -7,8 +7,8 @@
   
   "experimental": {
     "clash_api": {
-      "external_controller": "0.0.0.0:9095",
-      "external_ui": "/etc/sing-box/ui",
+      "external_controller": "0.0.0.0:9019",
+      "external_ui": "ui",
       "secret": "",
       "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
       "external_ui_download_detour": "🚀 节点选择",
@@ -29,6 +29,9 @@
       { "rule_set": "geosite-cn", "server": "localDns" },   
       { "clash_mode": "direct", "server": "localDns" },
       { "clash_mode": "global", "server": "proxyDns" },
+      { "rule_set": "geosite-cn", "server": "localDns" },
+      { "rule_set": "geosite-pt", "server": "localDns" },
+      { "rule_set": "geosite-fcm", "server": "localDns" },
       { "rule_set": "geosite-geolocation-!cn", "server": "proxyDns" }
     ],
     "final": "localDns",
@@ -50,22 +53,22 @@
         "http_proxy": {
           "enabled": true,
           "server": "127.0.0.1",
-          "server_port": 2080
+          "server_port": 7890
         }
       }
     },
     {
       "type": "mixed",
       "listen": "127.0.0.1",
-      "listen_port": 2080,
+      "listen_port": 7890,
       "sniff": true,
       "users": []
     }
   ],
 
   "outbounds": [
-    { "tag": "🚀 节点选择", "type": "selector", "outbounds": ["节点名字1", "节点名字2"] },
-    { "tag": "🤖 OpenAI", "type": "selector", "outbounds": ["节点名字1", "节点名字2"] },
+    { "tag": "🚀 节点选择", "type": "selector", "outbounds": ["arm"] },
+    { "tag": "🤖 OpenAI", "type": "selector", "outbounds": ["arm"] },
     { "tag": "🎯 全球直连", "type": "direct" },
     { "tag": "dns-out", "type": "dns" },
        {
@@ -107,13 +110,20 @@
       { "clash_mode": "global", "outbound": "GLOBAL" },
       { "domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "outbound": "🎯 全球直连" },
       { "rule_set": "geosite-private", "outbound": "🎯 全球直连" },
-      { "rule_set": "geosite-chat", "outbound": "🤖 OpenAI" },  
+      { "rule_set": "geosite-chat", "outbound": "🤖 OpenAI" },
+      { "rule_set": "geosite-fcm", "outbound": "🎯 全球直连" },
+      { "rule_set": "geosite-pt", "outbound": "🎯 全球直连" },
+      { "rule_set": "geosite-proxy-A", "outbound": "🚀 节点选择" },
       { "rule_set": "geosite-geolocation-!cn", "outbound": "🚀 节点选择" },
       { "rule_set": ["geoip-cn", "geosite-cn"], "outbound": "🎯 全球直连" }
     ],
     
     "rule_set": [
       { "tag": "geosite-chat", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-chat-!cn.srs", "download_detour": "🚀 节点选择" },
+      { "tag": "geosite-fcm", "type": "remote", "format": "binary", "url": "https://mirror.ghproxy.com/https://github.com/Hostage-02/sing-box-srs/raw/refs/heads/main/sing-box/geosite/fcm-site.srs", "download_detour": "🎯 全球直连" },
+      { "tag": "geosite-pt", "type": "remote", "format": "binary", "url": "https://mirror.ghproxy.com/https://github.com/Hostage-02/sing-box-srs/raw/refs/heads/main/sing-box/geosite/pt.srs", "download_detour": "🎯 全球直连" },
+      { "tag": "geosite-gfw", "type": "remote", "format": "binary", "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/Hostage-02/sing-box-geosite/main/rule/gfw.srs", "download_detour": "🎯 全球直连" },
+      { "tag": "geosite-proxy-A", "type": "remote", "format": "binary", "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/Hostage-02/sing-box-geosite/main/rule/proxy-A.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geosite-geolocation-!cn", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs", "download_detour": "🚀 节点选择" },
       { "tag": "geoip-cn", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs", "download_detour": "🚀 节点选择" },
       { "tag": "geosite-cn", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs", "download_detour": "🚀 节点选择" },
